@@ -228,52 +228,6 @@
             width: 100%;
             height: auto;
         }
-        
-        /* --- Slider Styling --- */
-        .slider-container {
-            position: relative;
-            width: 100%;
-            max-width: 320px;
-            margin: 2rem auto;
-            overflow: hidden;
-            border-radius: 8px;
-        }
-        .slider-wrapper {
-            display: flex;
-            transition: transform 0.5s ease-in-out;
-        }
-        .slide {
-            min-width: 100%;
-            box-sizing: border-box;
-        }
-        .slide img {
-            width: 100%;
-            display: block;
-        }
-        .slider-btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background-color: rgba(0, 0, 0, 0.5);
-            color: white;
-            border: none;
-            padding: 0;
-            cursor: pointer;
-            z-index: 10;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            font-size: 24px;
-            line-height: 40px;
-            text-align: center;
-        }
-        .prev-btn {
-            left: 10px;
-        }
-        .next-btn {
-            right: 10px;
-        }
-
 
         /* --- Scroll Animation --- */
         .reveal {
@@ -358,14 +312,11 @@
                 <!-- Variante A -->
                 <div class="card">
                     <h3>Variante A (Fokus: Vorfreude)</h3>
-                    <div class="slider-container">
-                        <div class="slider-wrapper">
-                            <div class="slide"><img src="1.png" alt="Slide 1: Koffer gepackt?"></div>
-                            <div class="slide"><img src="2.png" alt="Slide 2: Flugangst?"></div>
-                            <div class="slide"><img src="3.png" alt="Slide 3: Jetzt Termin buchen"></div>
-                        </div>
-                        <button class="slider-btn prev-btn">&lt;</button>
-                        <button class="slider-btn next-btn">&gt;</button>
+                    <div class="video-wrapper">
+                        <video controls>
+                            <source src="Sommerdeal2.mov" type="video/mp4">
+                            Ihr Browser unterstützt das Video-Tag nicht.
+                        </video>
                     </div>
                     <h4>Headline:</h4>
                     <p>Ihr Auto urlaubsreif?</p>
@@ -446,41 +397,6 @@
             revealElements.forEach(element => {
                 revealObserver.observe(element);
             });
-
-            // --- Slider Logic ---
-            const sliderWrapper = document.querySelector('.slider-wrapper');
-            if (sliderWrapper) {
-                const slides = sliderWrapper.querySelectorAll('.slide');
-                const prevBtn = document.querySelector('.prev-btn');
-                const nextBtn = document.querySelector('.next-btn');
-                let currentIndex = 0;
-                const slideCount = slides.length;
-
-                function showSlide(index) {
-                    if (index >= slideCount) {
-                        currentIndex = 0;
-                    } else if (index < 0) {
-                        currentIndex = slideCount - 1;
-                    } else {
-                        currentIndex = index;
-                    }
-                    const offset = -currentIndex * 100;
-                    sliderWrapper.style.transform = `translateX(${offset}%)`;
-                }
-
-                nextBtn.addEventListener('click', () => {
-                    showSlide(currentIndex + 1);
-                });
-
-                prevBtn.addEventListener('click', () => {
-                    showSlide(currentIndex - 1);
-                });
-
-                // Initialize slider
-                if(slides.length > 0) {
-                    showSlide(currentIndex);
-                }
-            }
         });
     </script>
 </body>
